@@ -1,12 +1,18 @@
 package pl.sda.patient_registration_app.web;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import pl.sda.patient_registration_app.annotations.EmailExistsException;
 import pl.sda.patient_registration_app.bo.NewPatientRegistrationService;
 import pl.sda.patient_registration_app.dto.NewPatientRegistrationDto;
+import pl.sda.patient_registration_app.entity.Patient;
+
+import javax.validation.Valid;
 
 @Controller
 public class NewPatientRegistrationController {
@@ -28,20 +34,46 @@ public class NewPatientRegistrationController {
     }
 
     @PostMapping(value = "/nowyUzytkownik/zarejestruj")
-    public ModelAndView postNewUserPage(@ModelAttribute("newUser") NewPatientRegistrationDto newPatientRegistrationDto) {
+    public ModelAndView registerUserAccount(
+            @ModelAttribute("newUser") @Valid NewPatientRegistrationDto newPatientRegistrationDto,
+            BindingResult result,
+            Errors errors) {
 
-        ModelAndView mav = new ModelAndView("rejestracjaWynik");
+        Patient registered = null;
 
-        newPatientRegistrationService.saveNewPatientToDB(newPatientRegistrationDto);
-
-
-        return mav;
+        if (!result.hasErrors()) {
+            registered = createUserAccount(newPatientRegistrationDto, result);
+        }
+        if (registered == null) {
+            result.rejectValue("email", "message.regError");
+        }
+        if (result.hasErrors()) {
+            return new ModelAndView("bladRejestracji");
+        } else {
+            return new ModelAndView("rejestracjaWynik", "newUser", newPatientRegistrationDto);
+        }
     }
-//
-//    @GetMapping(value = "/nowyUzytkownik/zarejestruj")
-//    public ModelAndView showResultOfRegistration() {
-//
-//        ModelAndView mav = new ModelAndView("rejestracjaWynik");
-//        return mav;
-//    }
+
+    private Patient createUserAccount(NewPatientRegistrationDto newPatientRegistrationDto, BindingResult result) {
+        Patient registered = null;
+        try {
+            registered = newPatientRegistrationService.saveNewPatientToDB(newPatientRegistrationDto);
+        } catch (EmailExistsException e) {
+            return null;
+        }
+        return registered;
+    }
+
+//    @PostMapping(value = "/nowyUzytkownik/zarejestruj")
+////    public ModelAndView postNewUserPage(@ModelAttribute("newUser") @Valid NewPatientRegistrationDto newUserRegistrationDto) {
+////
+////        ModelAndView mav = new ModelAndView("rejestracjaWynik");
+////
+////        newPatientRegistrationService.saveNewPatientToDB(newUserRegistrationDto);
+////
+////
+////        return mav;
+////    }
+
+
 }

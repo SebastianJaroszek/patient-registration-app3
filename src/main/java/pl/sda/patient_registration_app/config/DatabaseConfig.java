@@ -37,13 +37,21 @@ public class DatabaseConfig {
     }
 
     @Bean
+
     public DataSource dataSource() {
+
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+
         dataSource.setDriverClassName("org.postgresql.Driver");
+
         dataSource.setUrl("jdbc:postgresql://pythonfan.pl:5432/registration-database");
+
         dataSource.setUsername("javaapp");
+
         dataSource.setPassword("5+3a!lg6:2lF");
+
         return dataSource;
+
     }
 
     @Bean

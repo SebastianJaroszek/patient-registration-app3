@@ -37,8 +37,4 @@ public class DoctorsFinder {
                 .map(d -> utilsService.mapDoctorToDoctorDto(d))
                 .collect(Collectors.toList());
     }
-
-    public DoctorDto findByLogin(String login) {
-        return utilsService.mapDoctorToDoctorDto(doctorsRepository.findByLogin(login));
-    }
 }
