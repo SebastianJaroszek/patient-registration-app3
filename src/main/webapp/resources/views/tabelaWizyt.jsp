@@ -13,18 +13,32 @@
     <title>Tabela wizyt</title>
     <link href="${pageContext.servletContext.contextPath}/resources/css/app.css" rel="stylesheet">
 </head>
-</head>
+
 
 <body>
-<jsp:include page="menu.jsp"/>
-<table id="visitTable">
-    <thead>
-    <tr>
-        <td>Lekarz/Godzina</td>
-        <c:forEach items="${hours}" var="hours">
-            <td> ${hours}
-            </td>
-        </c:forEach>
+<div class="page-header">
+    <%--Header strony--%>
+    <h1>TwojeZdrowie</h1>
+</div>
+
+<div class="page-menu">
+    <jsp:include page="menu.jsp"/>
+</div>
+
+<div class="page-text">
+    <%--Część odpowiedzialna za wyświetlanie treści strony--%>
+    <br><br>
+    Ten harmonogram dotyczy daty: ${dateOfVisits}, ${weekDayName}
+    <br><br>
+
+    <table id="visitTable">
+        <thead>
+        <tr>
+            <td>Lekarz/Godzina</td>
+            <c:forEach items="${hours}" var="hours">
+                <td> ${hours}
+                </td>
+            </c:forEach>
 
     </tr>
     </thead>
@@ -71,8 +85,7 @@
 </table>
 
 <br><br>
-Ten harmonogram dotyczy daty: ${dateOfVisits}, ${weekDayName}
-<br><br>
+
 <form action="specjalista" method="GET">
     <input type="hidden" name="date" value="${dateOfVisits.plusDays(1)}">
     <input type="hidden" name="specType" value="${specType}">
@@ -90,5 +103,10 @@ Ten harmonogram dotyczy daty: ${dateOfVisits}, ${weekDayName}
     <input type="submit" value="przejdź do wybranego dnia">
 </form>
 
+</div>
+<div class="page-footer">
+    <%--stopka--%>
+    <footer>Copyright © 2018 Design GangOfThree</footer>
+</div>
 </body>
 </html>
