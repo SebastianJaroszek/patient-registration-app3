@@ -16,13 +16,11 @@
 <body>
 
 <form:form action="nowyUzytkownik/zarejestruj" method="post" modelAttribute="newUser">
-
     <label>Imie:</label><br>
     <form:input type="text" path="firstName"/><br>
 
-      <label>Nazwisko:</label><br>
+    <label>Nazwisko:</label><br>
     <form:input type="text" path="lastName"/><br>
-
     <label>E-mail:</label><br>
     <form:input path="email"/><br>
     <label>Login:</label><br>
@@ -30,8 +28,6 @@
 
     <label>Haslo:</label><br>
     <form:input type="password" path="password"/><br>
-    <label>Powtorz haslo:</label><br>
-    <form:input type="password" path="matchingPassword"/><br>
     <input type="submit" value="Wyślij"><br>
 
 </form:form>

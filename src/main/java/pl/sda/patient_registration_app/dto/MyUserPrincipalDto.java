@@ -23,7 +23,6 @@ public class MyUserPrincipalDto implements UserDetails {
 
     private String password;
 
-
     private Long id;
 
     @Override
