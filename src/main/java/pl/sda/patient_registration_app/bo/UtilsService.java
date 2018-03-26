@@ -1,19 +1,14 @@
 package pl.sda.patient_registration_app.bo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.patient_registration_app.dto.*;
 import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.entity.Patient;
 import pl.sda.patient_registration_app.entity.User;
 import pl.sda.patient_registration_app.entity.Visit;
-import pl.sda.patient_registration_app.type.DocSpecType;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -42,7 +37,6 @@ public class UtilsService {
                 .name(doctor.getFirstName())
                 .lastName(doctor.getLastName())
                 .specialization(doctor.getSpecialization())
-                .login(doctor.getLogin())
                 //.visits(visit)
                 .build();
     }
@@ -85,7 +79,7 @@ public class UtilsService {
         patient.setLastName(newPatientRegistrationDto.getLastName());
         patient.setLogin(newPatientRegistrationDto.getLogin());
         patient.setPassword(newPatientRegistrationDto.getPassword());
-
+        patient.setEmail(newPatientRegistrationDto.getEmail());
 
         return patient;
     }
@@ -121,17 +115,6 @@ public class UtilsService {
         Doctor doctor = new Doctor();
         doctor.setId(doctorDto.getId());
         return doctor;
-    }
-
-
-    public List<String> convertSpecEnum() { //testy do tego!
-        //List<String> afterConvert = new ArrayList<>();
-        List<DocSpecType> docSpecTypes = Arrays.asList(DocSpecType.values());
-        List<String> docSpecNames = docSpecTypes.stream()
-                .map(s -> s.getName())
-                .collect(Collectors.toList());
-        docSpecNames.sort(String::compareTo);
-        return docSpecNames;
     }
 
 

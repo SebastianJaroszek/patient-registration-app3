@@ -16,7 +16,7 @@ import javax.persistence.*;
 
 public class User {
 
-    @Column(name = "login", nullable = false, unique = true)
+    @Column(name = "login")
     private String login;
 
     @Column(name = "password")

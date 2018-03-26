@@ -46,6 +46,16 @@ public class RegistrationController {
         this.timetablesService = timetablesService;
     }
 
+    private List<String> convertSpecEnum() { //testy do tego!
+        //List<String> afterConvert = new ArrayList<>();
+        List<DocSpecType> docSpecTypes = Arrays.asList(DocSpecType.values());
+        List<String> docSpecNames = docSpecTypes.stream()
+                .map(s -> s.getName())
+                .collect(Collectors.toList());
+        docSpecNames.sort(String::compareTo);
+        return docSpecNames;
+    }
+
     @GetMapping("/rejestracja")
     public ModelAndView showRegistrationPage() {
 
@@ -54,7 +64,7 @@ public class RegistrationController {
         ModelAndView mav = new ModelAndView("rejestracja");
 
         //mav.addObject("visits", registrationFinder.showAllVisits());
-        mav.addObject("docSpecEnum", utilsService.convertSpecEnum());
+        mav.addObject("docSpecEnum", convertSpecEnum());
         return mav;
     }
 

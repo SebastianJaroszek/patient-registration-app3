@@ -12,7 +12,9 @@
     <link href="${pageContext.servletContext.contextPath}/resources/css/app.css" rel="stylesheet"></head>
 </head>
 <body>
+
 <jsp:include page="menu.jsp" />
-Flamingi lataja kluczem.
+Rejestracja udana
+
 </body>
 </html>
