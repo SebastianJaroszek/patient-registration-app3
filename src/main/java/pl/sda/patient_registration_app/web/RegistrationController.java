@@ -2,27 +2,22 @@ package pl.sda.patient_registration_app.web;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.patient_registration_app.bo.*;
-import pl.sda.patient_registration_app.dto.DoctorDto;
 import pl.sda.patient_registration_app.dto.MyUserPrincipalDto;
 import pl.sda.patient_registration_app.dto.RegisterDto;
-import pl.sda.patient_registration_app.dto.VisitDto;
 import pl.sda.patient_registration_app.type.DocSpecType;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.TextStyle;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 @Controller
 public class RegistrationController {
@@ -46,16 +41,6 @@ public class RegistrationController {
         this.timetablesService = timetablesService;
     }
 
-    private List<String> convertSpecEnum() { //testy do tego!
-        //List<String> afterConvert = new ArrayList<>();
-        List<DocSpecType> docSpecTypes = Arrays.asList(DocSpecType.values());
-        List<String> docSpecNames = docSpecTypes.stream()
-                .map(s -> s.getName())
-                .collect(Collectors.toList());
-        docSpecNames.sort(String::compareTo);
-        return docSpecNames;
-    }
-
     @GetMapping("/rejestracja")
     public ModelAndView showRegistrationPage() {
 
@@ -64,7 +49,7 @@ public class RegistrationController {
         ModelAndView mav = new ModelAndView("rejestracja");
 
         //mav.addObject("visits", registrationFinder.showAllVisits());
-        mav.addObject("docSpecEnum", convertSpecEnum());
+        mav.addObject("docSpecEnum", utilsService.convertSpecEnum());
         return mav;
     }
 
