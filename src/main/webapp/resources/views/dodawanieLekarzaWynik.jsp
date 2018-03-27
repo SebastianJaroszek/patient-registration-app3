@@ -11,7 +11,6 @@
     <title>Dodawanie lekarza</title>
     <link href="${pageContext.servletContext.contextPath}/resources/css/app.css" rel="stylesheet">
 </head>
-</head>
 <body>
 <jsp:include page="menu.jsp"/>
 <p>
@@ -22,6 +21,7 @@
     Imię: ${addedDoctor.name}<br>
     Nazwisko: ${addedDoctor.lastName}<br>
     Specjalizaja: ${addedDoctor.specialization.name}<br>
+    E-mail: ${addedDoctor.email}<br>
     Login: ${addedDoctor.login}<br>
 </p>
 

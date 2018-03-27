@@ -52,6 +52,7 @@ public class UtilsService {
                 .lastName(doctor.getLastName())
                 .specialization(doctor.getSpecialization())
                 .login(doctor.getLogin())
+                .email(doctor.getEmail())
                 //.visits(visit)
                 .build();
     }

@@ -21,6 +21,7 @@ public class DoctorDto {
     private String password;
     private List<VisitDto> visits;
     private List<DoctorTimetableDto> timetables;
+    private String email;
 
 
 }

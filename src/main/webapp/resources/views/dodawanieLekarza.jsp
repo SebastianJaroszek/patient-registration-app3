@@ -34,6 +34,9 @@
             </c:forEach>
         </select><br>
 
+        <label>E-mail:</label><br>
+        <form:input path="email"/><br>
+
         <label>Login:</label><br>
         <form:input path="login"/><br>
 

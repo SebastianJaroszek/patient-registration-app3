@@ -16,6 +16,7 @@
     <li class="m"><a href="${pageContext.servletContext.contextPath}/rejestracja">Rejestracja Wizyty</a></li>
     <li class="m"><a href="${pageContext.servletContext.contextPath}/wizytyPacjenta">Historia Wizyt</a></li>
     <li class="m"><a href="${pageContext.servletContext.contextPath}/doktorzy">Lekarze</a></li>
+    <li class="m"><a href="${pageContext.servletContext.contextPath}/dodajLekarza">Dodaj lekarza</a></li>
     <li class="m"><a href="<c:url value="/logout" />">Wyloguj</a></li>
 
 </ul>

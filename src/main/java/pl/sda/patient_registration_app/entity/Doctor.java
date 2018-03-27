@@ -16,7 +16,8 @@ import java.util.Set;
 @Table(name = "doctors")
 public class Doctor extends User{
 
-
+    @Column(name = "email")
+    private String email;
 
     @OneToMany(mappedBy = "doctor")
     private Set<Visit> visits;
