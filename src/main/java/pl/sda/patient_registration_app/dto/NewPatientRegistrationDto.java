@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.validator.constraints.Email;
 import pl.sda.patient_registration_app.annotations.PasswordMatches;
 
 import javax.validation.constraints.NotNull;
@@ -39,5 +40,6 @@ public class NewPatientRegistrationDto {
 
     @NotNull
     @Size(min=1)
+    @Email
     private String email;
 }
