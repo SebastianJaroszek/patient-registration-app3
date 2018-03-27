@@ -2,6 +2,7 @@ package pl.sda.patient_registration_app.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.sda.patient_registration_app.dto.DoctorDto;
 import pl.sda.patient_registration_app.dto.NewDoctorDto;
 import pl.sda.patient_registration_app.entity.Doctor;
@@ -46,6 +47,7 @@ public class DoctorsService {
     }
 
 
+    @Transactional
     public void addDoctor(NewDoctorDto newDoctorDto) {
         Doctor doctor = new Doctor();
         doctor.setFirstName(newDoctorDto.getName());
