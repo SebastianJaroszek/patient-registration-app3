@@ -76,12 +76,11 @@ li.b {
     text-align: center;
 }
 
-input[type=text], select {
-    margin: auto;
-    width: auto;
-    padding: 12px 20px;
 
-    display: inline-block;
+input[type=text],[type=password], select {
+
+    width: auto;
+    padding: 5px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;

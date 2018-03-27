@@ -10,7 +10,7 @@
 <head>
     <title>Logowanie</title>
     <link href="${pageContext.servletContext.contextPath}/resources/css/app.css" rel="stylesheet">
-    <link href="${pageContext.servletContext.contextPath}/resources/css/loginForm.css" rel="stylesheet">
+
 
 </head>
 
@@ -23,17 +23,10 @@
 <div class="page-menu">
     <jsp:include page="menu.jsp"/>
 </div>
-
-<div id="panel">
+<div class="page-text">
+    <%--Część odpowiedzialna za wyświetlanie treści strony--%>
     <form>
-        <label for="username">Nazwa użytkownika:</label>
-        <input type="text" id="username" name="username">
-        <label for="password">Hasło:</label>
-        <p><a href="#">Zapomniałeś hasła?</a></p>
-        <input type="password" id="password" name="password">
-        <div id="lower">
-            <input type="submit" value="Login">
-        </div>
+
     </form>
 </div>
 
