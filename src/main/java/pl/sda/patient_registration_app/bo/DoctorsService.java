@@ -3,6 +3,7 @@ package pl.sda.patient_registration_app.bo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.patient_registration_app.dto.DoctorDto;
+import pl.sda.patient_registration_app.dto.NewDoctorDto;
 import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.repository.DoctorsRepository;
 import pl.sda.patient_registration_app.repository.PatientsRepository;
@@ -45,13 +46,13 @@ public class DoctorsService {
     }
 
 
-    public void addDoctor(DoctorDto doctorDto) {
+    public void addDoctor(NewDoctorDto newDoctorDto) {
         Doctor doctor = new Doctor();
-        doctor.setFirstName(doctorDto.getName());
-        doctor.setLastName(doctorDto.getLastName());
-        doctor.setSpecialization(doctorDto.getSpecialization());
-        doctor.setLogin(doctorDto.getLogin());
-        doctor.setPassword(doctorDto.getPassword());
+        doctor.setFirstName(newDoctorDto.getName());
+        doctor.setLastName(newDoctorDto.getLastName());
+        doctor.setSpecialization(newDoctorDto.getSpecialization());
+        doctor.setLogin(newDoctorDto.getLogin());
+        doctor.setPassword(newDoctorDto.getPassword());
         doctorsRepository.save(doctor);
     }
 }

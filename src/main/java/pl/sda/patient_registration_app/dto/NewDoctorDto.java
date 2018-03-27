@@ -9,19 +9,29 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
-@PasswordMatches
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class NewDoctorDto {
-//TODO walidacja dodawanego lekarza
+
     @NotNull
-    @Size(min = 1, max = 100)
+    @Size(min = 1)
     private String name;
+
+    @NotNull
+    @Size(min = 1)
     private String lastName;
+
     private DocSpecType specialization;
+
     private Long id;
+
+    @NotNull
+    @Size(min = 1)
     private String login;
+
+    @NotNull
+    @Size(min = 7)
     private String password;
 
 }
