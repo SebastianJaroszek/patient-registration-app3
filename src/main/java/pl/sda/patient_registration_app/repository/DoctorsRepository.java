@@ -12,4 +12,6 @@ public interface DoctorsRepository extends JpaRepository<Doctor, Long> {
 
 
     List<Doctor> findBySpecialization(DocSpecType docSpecType);
+
+    Doctor findByLogin(String login);
 }
