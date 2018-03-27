@@ -1,5 +1,7 @@
 package pl.sda.patient_registration_app.bo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import pl.sda.patient_registration_app.dto.*;
 import pl.sda.patient_registration_app.entity.Doctor;
@@ -17,6 +19,9 @@ import java.util.stream.Collectors;
 
 @Service
 public class UtilsService {
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     public PatientDto mapPatientToPatientDto(Patient patient) {
         //List<VisitDto> visits = mapVisitsToVisitsDto(patient.getVisits());
@@ -81,7 +86,7 @@ public class UtilsService {
         patient.setFirstName(newPatientRegistrationDto.getFirstName());
         patient.setLastName(newPatientRegistrationDto.getLastName());
         patient.setLogin(newPatientRegistrationDto.getLogin());
-        patient.setPassword(newPatientRegistrationDto.getPassword());
+        patient.setPassword(passwordEncoder.encode(newPatientRegistrationDto.getPassword()));
 
 
         return patient;

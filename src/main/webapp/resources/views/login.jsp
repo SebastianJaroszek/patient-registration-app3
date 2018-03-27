@@ -1,17 +1,19 @@
 <%--
   Created by IntelliJ IDEA.
-  User: Andrzej
-  Date: 3/22/2018
-  Time: 6:21 PM
+  User: barto
+  Date: 26.03.2018
+  Time: 16:10
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Wynik rejestracji</title>
+    <title>Logowanie</title>
     <link href="${pageContext.servletContext.contextPath}/resources/css/app.css" rel="stylesheet">
 
+
 </head>
+
 <body>
 <div class="page-header">
     <%--Header strony--%>
@@ -23,7 +25,9 @@
 </div>
 <div class="page-text">
     <%--Część odpowiedzialna za wyświetlanie treści strony--%>
-        <h1>Rejestracja udana!</h1>
+    <form>
+
+    </form>
 </div>
 
 <div class="page-footer">
