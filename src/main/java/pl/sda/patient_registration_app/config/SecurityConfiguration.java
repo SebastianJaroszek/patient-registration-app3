@@ -70,6 +70,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/rejestracja/specjalista").hasAnyRole("PATIENT","MANAGER","ADMIN")
                 .antMatchers("/pokazywarkaWizyt").hasAnyRole("PATIENT","MANAGER","ADMIN")
                 .antMatchers("/wizytyPacjenta").hasAnyRole("PATIENT","MANAGER","ADMIN")
+                .antMatchers("/dodajLekarza").hasAnyRole("MANAGER","ADMIN")
                 .antMatchers("/*").permitAll()
                 .and().formLogin().successHandler(successLoginHandler)
                 //.loginPage("/login")
