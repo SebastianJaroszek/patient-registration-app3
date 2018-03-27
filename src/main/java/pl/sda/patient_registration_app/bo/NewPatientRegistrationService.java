@@ -8,6 +8,7 @@ import pl.sda.patient_registration_app.annotations.EmailExistsException;
 import pl.sda.patient_registration_app.dto.NewPatientRegistrationDto;
 import pl.sda.patient_registration_app.entity.Patient;
 import pl.sda.patient_registration_app.repository.PatientsRepository;
+import pl.sda.patient_registration_app.type.RoleType;
 
 @Service
 public class NewPatientRegistrationService {
@@ -32,7 +33,7 @@ public class NewPatientRegistrationService {
 
         Patient patient = utilsService.mapNewPatientRegistrationDtoToPatient(newPatientRegistrationDto);
 
-      //  user.setRoles(Arrays.asList("ROLE_USER"));
+        patient.setRole(RoleType.PATIENT);
         return patientsRepository.save(patient);
 
     }

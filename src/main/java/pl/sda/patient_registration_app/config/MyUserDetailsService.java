@@ -20,29 +20,22 @@ import java.util.List;
 @Service("myUserDetailsService")
 @Transactional
 public class MyUserDetailsService implements UserDetailsService {
-
     @Autowired
     private UserRepository userRepository;
     @Autowired
     private UtilsService utilsServices;
-    @Autowired
-    private UserDetailsService userDetailsService;
-
-
 
 
     @Override
     public UserDetails loadUserByUsername(String login) {
         User user = userRepository.findByLogin(login);
+
 //        if (user == null) {
 //            throw new UsernameNotFoundException(login);
 //        }
+
         return utilsServices.mapUserToMyUserPrincipalDto(user);
     }
 
-    private List<GrantedAuthority> getGrantedAuthorities() {
-        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
-        return authorities;
-    }
+
 }

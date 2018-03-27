@@ -22,13 +22,13 @@ public class MyUserPrincipalDto implements UserDetails {
     private String login;
 
     private String password;
-
+    private Collection authorites;
 
     private Long id;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.authorites;
     }
 
     @Override
