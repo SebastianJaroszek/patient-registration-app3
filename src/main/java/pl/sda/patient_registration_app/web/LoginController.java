@@ -14,15 +14,15 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginController {
 
     @GetMapping(value = "/login")
-    public String mainPage() {
+    public String loginPage() {
 
         return "login";
     }
 
     @PostMapping(value = "/login")
-    public String mainPostPage() {
+    public String loginPostPage() {
 
-        return "login";
+        return "main";
     }
     @GetMapping(value="/logout")
     public String logoutPage (HttpServletRequest request, HttpServletResponse response) {

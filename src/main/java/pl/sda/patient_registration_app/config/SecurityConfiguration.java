@@ -60,7 +60,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/wizytyPacjenta").authenticated()
                 .antMatchers("/*").permitAll()
                 .and().formLogin().successHandler(successLoginHandler)
-                .loginPage("/login")
+                //.loginPage("/login")
                 .and().exceptionHandling().accessDeniedPage("/error")
                 .and().csrf().disable();
 
