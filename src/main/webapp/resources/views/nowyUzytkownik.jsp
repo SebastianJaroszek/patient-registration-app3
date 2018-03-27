@@ -34,8 +34,10 @@
         <label>Login:</label><br>
         <form:input path="login"/><br>
 
-        <label>Haslo:</label><br>
+        <label>Haslo, minimum 7 znakow:</label><br>
         <form:input type="password" path="password"/><br>
+        <label>Powtorz haslo:</label><br>
+        <form:input type="password" path="matchingPassword"/><br>
         <input type="submit" value="Wyślij"><br>
 
     </form:form>

@@ -1,6 +1,8 @@
 package pl.sda.patient_registration_app.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
@@ -23,6 +25,11 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserRepository userRepository;
     @Autowired
     private UtilsService utilsServices;
+    @Autowired
+    private UserDetailsService userDetailsService;
+
+
+
 
     @Override
     public UserDetails loadUserByUsername(String login) {
