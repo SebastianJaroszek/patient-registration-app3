@@ -13,7 +13,6 @@
     <title>Dodawanie lekarza</title>
     <link href="${pageContext.servletContext.contextPath}/resources/css/app.css" rel="stylesheet">
 </head>
-</head>
 <body>
 <jsp:include page="menu.jsp"/>
 <p>
