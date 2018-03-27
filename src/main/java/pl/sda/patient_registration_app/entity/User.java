@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.patient_registration_app.type.RoleType;
 
 import javax.persistence.*;
 
@@ -31,6 +32,9 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
+    @Column(name = "role")
+    private RoleType role;
 
 
 }

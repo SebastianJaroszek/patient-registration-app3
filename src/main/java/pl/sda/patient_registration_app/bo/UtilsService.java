@@ -1,8 +1,11 @@
 package pl.sda.patient_registration_app.bo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import pl.sda.patient_registration_app.config.MyUserDetailsService;
 import pl.sda.patient_registration_app.dto.*;
 import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.entity.Patient;
@@ -22,6 +25,10 @@ public class UtilsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+
+
+
 
     public PatientDto mapPatientToPatientDto(Patient patient) {
         //List<VisitDto> visits = mapVisitsToVisitsDto(patient.getVisits());
@@ -94,11 +101,22 @@ public class UtilsService {
 
     public MyUserPrincipalDto mapUserToMyUserPrincipalDto(User user) {
 
+        List<GrantedAuthority> grantedAuthorities =
+                getGrantedAuthorities(user);
 
         return MyUserPrincipalDto.builder()
                 .login(user.getLogin())
                 .password(user.getPassword())
-                .id(user.getId()).build();
+                .id(user.getId())
+                .authorites(grantedAuthorities)
+                .build();
+
+    }
+
+    private List<GrantedAuthority> getGrantedAuthorities(User user) {
+        List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+        authorities.add(new SimpleGrantedAuthority(user.getRole().getName()));
+        return authorities;
     }
 
     public MyUserPrincipalDto mapPatientToMyUserPrincipal(Patient patient) {
