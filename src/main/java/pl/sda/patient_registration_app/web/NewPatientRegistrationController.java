@@ -63,6 +63,14 @@ public class NewPatientRegistrationController {
             return null;
         }
         return registered;
+    private Patient createUserAccount(NewPatientRegistrationDto newPatientRegistrationDto, BindingResult result) {
+        Patient registered = null;
+        try {
+            registered = newPatientRegistrationService.saveNewPatientToDB(newPatientRegistrationDto);
+        } catch (EmailExistsException e) {
+            return null;
+        }
+        return registered;
     }
 
 //    @PostMapping(value = "/nowyUzytkownik/zarejestruj")

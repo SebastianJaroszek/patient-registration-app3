@@ -1,8 +1,5 @@
 package pl.sda.patient_registration_app.bo;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.patient_registration_app.dto.*;
 import pl.sda.patient_registration_app.entity.Doctor;

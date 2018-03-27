@@ -23,5 +23,7 @@ public class Patient extends User {
 
     private Set<Visit> visits;
 
+    @Column(name = "email")
+    private String email;
 
 }
