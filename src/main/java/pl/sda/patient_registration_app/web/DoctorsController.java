@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import pl.sda.patient_registration_app.bo.*;
 import pl.sda.patient_registration_app.dto.NewDoctorDto;
+import pl.sda.patient_registration_app.dto.NewTimetableDto;
 import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.type.DocSpecType;
 
@@ -41,6 +42,7 @@ public class DoctorsController {
         ModelAndView mav = new ModelAndView("doktorzy");
 
         mav.addObject("doctors", doctorsFinder.showAllDoctors());
+        mav.addObject("newTimetable", new NewTimetableDto());
 
         return mav;
     }

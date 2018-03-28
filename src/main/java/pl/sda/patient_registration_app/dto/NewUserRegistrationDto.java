@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 @NoArgsConstructor
 @Builder
 @PasswordMatches
-public class NewPatientRegistrationDto {
+public class NewUserRegistrationDto {
 
     @NotNull
     @Size(min=1)

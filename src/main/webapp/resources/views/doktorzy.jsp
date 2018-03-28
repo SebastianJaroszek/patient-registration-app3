@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: Andrzej
@@ -27,16 +28,18 @@
     <%--Część odpowiedzialna za wyświetlanie treści strony--%>
     Lista lekarzy:
 
-    <form method="get" action="dodawanieHarmonogramu">
+    <form:form modelAttribute="newTimetable" method="GET" action="dodawanieHarmonogramu">
         <ol class="a">
-            <c:forEach items="${doctors}" var="doctor">
+            <c:forEach items="${doctors}" var="doctor" varStatus="doctorLoop">
                 <li class="a">${doctor.name} ${doctor.lastName}, ${doctor.specialization}
-                    <input type="checkbox" name="${doctor.id}">
+                    <input type="hidden" name="doctorsId[${doctorLoop.index}]" value="${doctor.id}">
+                    <input type="checkbox" name="isChecked[${doctorLoop.index}]">
+                    <%--<form:input path="doctors[${doctorLoop.index}].name"/>--%>
                 </li>
             </c:forEach>
         </ol>
         <input type="submit" value="dodaj harmonogram">
-    </form>
+    </form:form>
 </div>
 
 <div class="page-footer">

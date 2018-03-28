@@ -5,7 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.sda.patient_registration_app.config.MyUserDetailsService;
 import pl.sda.patient_registration_app.dto.*;
 import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.entity.Patient;
@@ -88,13 +87,13 @@ public class UtilsService {
         return patient;
     }
 
-    public Patient mapNewPatientRegistrationDtoToPatient(NewPatientRegistrationDto newPatientRegistrationDto) {
+    public Patient mapNewPatientRegistrationDtoToPatient(NewUserRegistrationDto newUserRegistrationDto) {
 
         Patient patient = new Patient();
-        patient.setFirstName(newPatientRegistrationDto.getFirstName());
-        patient.setLastName(newPatientRegistrationDto.getLastName());
-        patient.setLogin(newPatientRegistrationDto.getLogin());
-        patient.setPassword(passwordEncoder.encode(newPatientRegistrationDto.getPassword()));
+        patient.setFirstName(newUserRegistrationDto.getFirstName());
+        patient.setLastName(newUserRegistrationDto.getLastName());
+        patient.setLogin(newUserRegistrationDto.getLogin());
+        patient.setPassword(passwordEncoder.encode(newUserRegistrationDto.getPassword()));
 
 
         return patient;
@@ -156,4 +155,11 @@ public class UtilsService {
     }
 
 
+    public List<LocalTime> getClinicHoursOfWork() {
+        List<LocalTime> hours = new ArrayList<>();
+        for (int i = 6; i <= 20; i++){
+            hours.add(LocalTime.of(i, 0));
+        }
+        return hours;
+    }
 }

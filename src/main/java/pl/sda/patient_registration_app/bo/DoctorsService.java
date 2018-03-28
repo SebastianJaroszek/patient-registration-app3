@@ -6,11 +6,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.sda.patient_registration_app.dto.DoctorDto;
 import pl.sda.patient_registration_app.dto.NewDoctorDto;
+import pl.sda.patient_registration_app.dto.NewTimetableDto;
 import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.repository.DoctorsRepository;
 import pl.sda.patient_registration_app.repository.PatientsRepository;
 import pl.sda.patient_registration_app.repository.VisitsRepository;
 import pl.sda.patient_registration_app.type.DocSpecType;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class DoctorsService {
@@ -62,5 +66,16 @@ public class DoctorsService {
         doctor.setEmail(newDoctorDto.getEmail());
         doctorsRepository.save(doctor);
         return doctor;
+    }
+
+    public List<Long> getCheckedDoctorsId(NewTimetableDto newTimetableDto) {
+        List<Long> ids = new ArrayList<>();
+        int size = newTimetableDto.getIsChecked().size();
+        for (int i = 0; i < size; i++){
+            if (newTimetableDto.getIsChecked().get(i) != null && newTimetableDto.getIsChecked().get(i)){
+                ids.add(newTimetableDto.getDoctorsId().get(i));
+            }
+        }
+        return ids;
     }
 }
