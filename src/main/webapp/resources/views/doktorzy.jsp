@@ -25,15 +25,18 @@
 </div>
 <div class="page-text">
     <%--Część odpowiedzialna za wyświetlanie treści strony--%>
-        Lista lekarzy:
+    Lista lekarzy:
 
+    <form method="get" action="dodawanieHarmonogramu">
         <ol class="a">
             <c:forEach items="${doctors}" var="doctor">
-                <li class="a">${doctor.name},
-                        ${doctor.lastName},
-                        ${doctor.specialization}</li>
+                <li class="a">${doctor.name} ${doctor.lastName}, ${doctor.specialization}
+                    <input type="checkbox" name="${doctor.id}">
+                </li>
             </c:forEach>
         </ol>
+        <input type="submit" value="dodaj harmonogram">
+    </form>
 </div>
 
 <div class="page-footer">
