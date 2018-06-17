@@ -19,27 +19,27 @@ import javax.validation.constraints.Size;
 public class NewUserRegistrationDto {
 
     @NotNull
-    @Size(min=1)
+    @Size(min = 1)
     private String firstName;
 
     @NotNull
-    @Size(min=1)
+    @Size(min = 1)
     private String lastName;
 
     @NotNull
-    @Size(min=1)
+    @Size(min = 1)
     private String login;
 
     @NotNull
-    @Size(min=7)
+    @Size(min = 7)
     private String password;
 
     @NotNull
-    @Size(min=7)
+    @Size(min = 7)
     private String matchingPassword;
 
     @NotNull
-    @Size(min=1)
+    @Size(min = 1)
     @Email
     private String email;
 }

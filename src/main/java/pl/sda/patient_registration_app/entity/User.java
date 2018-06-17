@@ -2,7 +2,6 @@ package pl.sda.patient_registration_app.entity;
 
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.sda.patient_registration_app.type.RoleType;

@@ -23,7 +23,7 @@
 </div>
 <div class="page-text">
     <%--Część odpowiedzialna za wyświetlanie treści strony--%>
-        <h1>Rejestracja Udana!</h1>
+    <h1>Rejestracja Udana!</h1>
 </div>
 
 <div class="page-footer">

@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.sda.patient_registration_app.dto.DoctorDayDto;
 import pl.sda.patient_registration_app.dto.DoctorDto;
-import pl.sda.patient_registration_app.dto.RegisterDto;
 import pl.sda.patient_registration_app.dto.VisitDto;
 import pl.sda.patient_registration_app.entity.Visit;
 import pl.sda.patient_registration_app.repository.VisitsRepository;
@@ -14,7 +13,6 @@ import pl.sda.patient_registration_app.type.VisitStatusType;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -44,7 +42,7 @@ public class DoctorDaysService {
         }
     }
 
-    public void addVisitsToDayVisitList(DoctorDayDto doctorDayDto) {
+    private void addVisitsToDayVisitList(DoctorDayDto doctorDayDto) {
         List<Visit> visitsByDate = visitsRepository.findByDate(doctorDayDto.getDate());
         List<VisitDto> visitsByDoctor = visitsByDate.stream()
                 .filter(v -> v.getDoctor().getId().equals(doctorDayDto.getDoctorDto().getId()))
@@ -61,7 +59,7 @@ public class DoctorDaysService {
     }
 
     private void fillListWithNoExistingVisits(List<VisitDto> visitsDto) {
-        LocalTime temptime = LocalTime.of(0, 0);
+        LocalTime temptime;
         for (int i = 6; i <= 19; i++) {
             temptime = LocalTime.of(i, 0);
             boolean isContaining = false;
@@ -77,17 +75,6 @@ public class DoctorDaysService {
                         .hourOfVisit(LocalTime.of(i, 0))
                         .build());
             }
-
-            /*for (VisitDto visitDto : visitsDto) {
-                if (visitDto.getHourOfVisit().equals(temptime)) {
-                    continue;
-                }
-                tempVisits.add(VisitDto.builder()
-                        .status(VisitStatusType.NOT_EXIST)
-                        .build());
-            }
-            visitsDto.add(VisitDto.builder().status(VisitStatusType.NOT_EXIST)
-                    .build());*/
         }
     }
 
@@ -111,7 +98,6 @@ public class DoctorDaysService {
                     .visits(doctorDto.getVisits())
                     .build();
             addVisitsToDayVisitList(doctorDayDto);
-            //sortByHour(doctorDayDto.getVisits());
             doctorDayDto.setVisits(sortByHour(doctorDayDto.getVisits()));
             doctorDaysDto.add(doctorDayDto);
         }

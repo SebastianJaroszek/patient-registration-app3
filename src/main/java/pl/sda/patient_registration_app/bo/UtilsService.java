@@ -26,9 +26,6 @@ public class UtilsService {
     private PasswordEncoder passwordEncoder;
 
 
-
-
-
     public PatientDto mapPatientToPatientDto(Patient patient) {
         //List<VisitDto> visits = mapVisitsToVisitsDto(patient.getVisits());
         if (patient != null) {
@@ -157,7 +154,7 @@ public class UtilsService {
 
     public List<LocalTime> getClinicHoursOfWork() {
         List<LocalTime> hours = new ArrayList<>();
-        for (int i = 6; i <= 20; i++){
+        for (int i = 6; i <= 20; i++) {
             hours.add(LocalTime.of(i, 0));
         }
         return hours;

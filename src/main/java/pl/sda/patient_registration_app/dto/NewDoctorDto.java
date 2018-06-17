@@ -2,7 +2,6 @@ package pl.sda.patient_registration_app.dto;
 
 import lombok.*;
 import org.hibernate.validator.constraints.Email;
-import pl.sda.patient_registration_app.annotations.PasswordMatches;
 import pl.sda.patient_registration_app.type.DocSpecType;
 
 import javax.validation.constraints.NotNull;

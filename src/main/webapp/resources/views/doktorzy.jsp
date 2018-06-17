@@ -34,7 +34,7 @@
                 <li class="a">${doctor.name} ${doctor.lastName}, ${doctor.specialization}
                     <input type="hidden" name="doctorsId[${doctorLoop.index}]" value="${doctor.id}">
                     <input type="checkbox" name="isChecked[${doctorLoop.index}]">
-                    <%--<form:input path="doctors[${doctorLoop.index}].name"/>--%>
+                        <%--<form:input path="doctors[${doctorLoop.index}].name"/>--%>
                 </li>
             </c:forEach>
         </ol>

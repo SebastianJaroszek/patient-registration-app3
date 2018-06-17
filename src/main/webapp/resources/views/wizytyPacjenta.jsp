@@ -25,14 +25,14 @@
 </div>
 <div class="page-text">
     <%--Część odpowiedzialna za wyświetlanie treści strony--%>
-        <ul class="b">
-            <c:forEach items="${wizyty}" var="wizyta">
-                <li class="b">${wizyta.dayOfVisit},
-                        ${wizyta.hourOfVisit},
-                    Dr. ${wizyta.doctor.lastName}</li>
-            </c:forEach>
+    <ul class="b">
+        <c:forEach items="${wizyty}" var="wizyta">
+            <li class="b">${wizyta.dayOfVisit},
+                    ${wizyta.hourOfVisit},
+                Dr. ${wizyta.doctor.lastName}</li>
+        </c:forEach>
 
-        </ul>
+    </ul>
 </div>
 
 <div class="page-footer">

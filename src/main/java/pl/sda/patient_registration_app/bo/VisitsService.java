@@ -9,7 +9,6 @@ import pl.sda.patient_registration_app.dto.RegisterDto;
 import pl.sda.patient_registration_app.dto.VisitDto;
 import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.entity.DoctorTimetable;
-import pl.sda.patient_registration_app.entity.Patient;
 import pl.sda.patient_registration_app.entity.Visit;
 import pl.sda.patient_registration_app.repository.DoctorTimetablesRepository;
 import pl.sda.patient_registration_app.repository.DoctorsRepository;
@@ -87,7 +86,7 @@ public class VisitsService {
         }
     }
 
-    private boolean isVisitAvailable(List<Visit> unavaidableVisits, LocalTime time, LocalDate date, DoctorDto doctorDto){
+    private boolean isVisitAvailable(List<Visit> unavaidableVisits, LocalTime time, LocalDate date, DoctorDto doctorDto) {
         List<VisitDto> unavaidableVisitsDto = unavaidableVisits.stream()
                 .map(v -> utilsService.mapVisitToVisitDto(v))
                 .collect(Collectors.toList());

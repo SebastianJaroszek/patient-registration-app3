@@ -9,7 +9,6 @@ import pl.sda.patient_registration_app.bo.PatientFinder;
 import pl.sda.patient_registration_app.bo.VisitsFinder;
 import pl.sda.patient_registration_app.bo.VisitsService;
 import pl.sda.patient_registration_app.dto.MyUserPrincipalDto;
-import pl.sda.patient_registration_app.dto.PatientDto;
 
 @Controller
 
@@ -27,7 +26,7 @@ public class PatientController {
     }
 
     @GetMapping(value = "/wizytyPacjenta")
-    public ModelAndView showPatientVisits(){
+    public ModelAndView showPatientVisits() {
         ModelAndView mav = new ModelAndView("wizytyPacjenta");
         MyUserPrincipalDto myUserPrincipalDto = (MyUserPrincipalDto) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();

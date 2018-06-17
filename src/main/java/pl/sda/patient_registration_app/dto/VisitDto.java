@@ -4,13 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.SortComparator;
 import org.springframework.format.annotation.DateTimeFormat;
 import pl.sda.patient_registration_app.type.VisitStatusType;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-
 
 
 @Data

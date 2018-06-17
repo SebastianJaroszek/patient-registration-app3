@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name = "doctors")
-public class Doctor extends User{
+public class Doctor extends User {
 
     @Column(name = "email")
     private String email;

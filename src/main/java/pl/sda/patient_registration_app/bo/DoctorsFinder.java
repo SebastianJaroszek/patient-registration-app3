@@ -13,20 +13,17 @@ import java.util.stream.Collectors;
 @Service
 public class DoctorsFinder {
 
-    private DoctorsService doctorsService;
     private DoctorsRepository doctorsRepository;
     private UtilsService utilsService;
 
     @Autowired
-    public DoctorsFinder(DoctorsRepository doctorsRepository, UtilsService utilsService, DoctorsService doctorsService) {
+    public DoctorsFinder(DoctorsRepository doctorsRepository, UtilsService utilsService) {
         this.doctorsRepository = doctorsRepository;
-        this.doctorsService = doctorsService;
         this.utilsService = utilsService;
     }
 
     @Transactional
     public List<DoctorDto> showAllDoctors() {
-        //doctorsService.fillDBwithDoctors();
         return doctorsRepository.findAll().stream()
                 .map(v -> utilsService.mapDoctorToDoctorDto(v))
                 .collect(Collectors.toList());

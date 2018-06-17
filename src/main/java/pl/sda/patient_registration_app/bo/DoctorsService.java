@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import pl.sda.patient_registration_app.dto.DoctorDto;
 import pl.sda.patient_registration_app.dto.NewDoctorDto;
 import pl.sda.patient_registration_app.dto.NewTimetableDto;
 import pl.sda.patient_registration_app.entity.Doctor;
@@ -19,39 +18,13 @@ import java.util.List;
 @Service
 public class DoctorsService {
 
-
-    private VisitsRepository visitsRepository;
-    private PatientsRepository patientsRepository;
     private DoctorsRepository doctorsRepository;
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    public DoctorsService(VisitsRepository visitsRepository, PatientsRepository patientsRepository,
-                          DoctorsRepository doctorsRepository, PasswordEncoder passwordEncoder) {
-        this.visitsRepository = visitsRepository;
-        this.patientsRepository = patientsRepository;
+    public DoctorsService(DoctorsRepository doctorsRepository, PasswordEncoder passwordEncoder) {
         this.doctorsRepository = doctorsRepository;
         this.passwordEncoder = passwordEncoder;
-    }
-
-    private void addDoctor(String firstName, String lastName, DocSpecType docSpecType) {
-
-        Doctor doctor = new Doctor();
-
-        doctor.setFirstName(firstName);
-        doctor.setLastName(lastName);
-        doctor.setSpecialization(docSpecType);
-        doctorsRepository.save(doctor);
-
-    }
-
-    public void fillDBwithDoctors() {
-
-        /*addDoctor("Mariusz", "Putas", DocSpecType.UROLOGIST);
-        addDoctor("Janusz", "Fijut", DocSpecType.UROLOGIST);
-        addDoctor("Sylweriusz", "Psikuta", DocSpecType.UROLOGIST);
-        addDoctor("Adam", "Kula", DocSpecType.HEMATOLOGIST);*/
-
     }
 
 
@@ -71,8 +44,8 @@ public class DoctorsService {
     public List<Long> getCheckedDoctorsId(NewTimetableDto newTimetableDto) {
         List<Long> ids = new ArrayList<>();
         int size = newTimetableDto.getIsChecked().size();
-        for (int i = 0; i < size; i++){
-            if (newTimetableDto.getIsChecked().get(i) != null && newTimetableDto.getIsChecked().get(i)){
+        for (int i = 0; i < size; i++) {
+            if (newTimetableDto.getIsChecked().get(i) != null && newTimetableDto.getIsChecked().get(i)) {
                 ids.add(newTimetableDto.getDoctorsId().get(i));
             }
         }

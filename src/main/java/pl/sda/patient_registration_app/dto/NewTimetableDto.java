@@ -1,7 +1,6 @@
 package pl.sda.patient_registration_app.dto;
 
 import lombok.*;
-import pl.sda.patient_registration_app.entity.Doctor;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;

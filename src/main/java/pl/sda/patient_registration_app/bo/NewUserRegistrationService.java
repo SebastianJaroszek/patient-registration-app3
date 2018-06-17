@@ -40,10 +40,7 @@ public class NewUserRegistrationService {
 
     private boolean emailExist(String email) {
         Patient patient = patientsRepository.findByEmail(email);
-        if (patient != null) {
-            return true;
-        }
-        return false;
+        return patient != null;
     }
 
 }

@@ -65,12 +65,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         filter.setForceEncoding(true);
         http.addFilterBefore(filter, CsrfFilter.class);
         http.authorizeRequests()
-                .antMatchers("/rejestracja").hasAnyRole("PATIENT","MANAGER","ADMIN")
-                .antMatchers("/tabelaWizyt").hasAnyRole("PATIENT","MANAGER","ADMIN")
-                .antMatchers("/rejestracja/specjalista").hasAnyRole("PATIENT","MANAGER","ADMIN")
-                .antMatchers("/pokazywarkaWizyt").hasAnyRole("PATIENT","MANAGER","ADMIN")
-                .antMatchers("/wizytyPacjenta").hasAnyRole("PATIENT","MANAGER","ADMIN")
-                .antMatchers("/dodajLekarza").hasAnyRole("MANAGER","ADMIN")
+                .antMatchers("/rejestracja").hasAnyRole("PATIENT", "MANAGER", "ADMIN")
+                .antMatchers("/tabelaWizyt").hasAnyRole("PATIENT", "MANAGER", "ADMIN")
+                .antMatchers("/rejestracja/specjalista").hasAnyRole("PATIENT", "MANAGER", "ADMIN")
+                .antMatchers("/pokazywarkaWizyt").hasAnyRole("PATIENT", "MANAGER", "ADMIN")
+                .antMatchers("/wizytyPacjenta").hasAnyRole("PATIENT", "MANAGER", "ADMIN")
+                .antMatchers("/dodajLekarza").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers("/*").permitAll()
                 .and().formLogin().successHandler(successLoginHandler)
                 //.loginPage("/login")

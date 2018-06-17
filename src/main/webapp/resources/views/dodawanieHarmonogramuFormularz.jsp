@@ -19,7 +19,7 @@
     Dodaj harmonogram dla wybranych lekarzy:
 </p>
 <p>
-    <form:form action="dodawanieHarmonogramu" method="POST" modelAttribute="newTimetable" >
+    <form:form action="dodawanieHarmonogramu" method="POST" modelAttribute="newTimetable">
         <label>Dzień tygodnia:</label><br>
         <%--<select title="dayOfWeek" name="dayOfWeek">--%>
         <form:select path="dayOfWeek">

@@ -24,7 +24,7 @@
 </div>
 <div class="page-text">
     <%--Część odpowiedzialna za wyświetlanie treści strony--%>
-        Idz pan panie z takim tym.
+    Idz pan panie z takim tym.
 </div>
 
 <div class="page-footer">

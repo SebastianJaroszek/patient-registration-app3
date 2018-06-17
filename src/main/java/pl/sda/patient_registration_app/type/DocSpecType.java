@@ -7,7 +7,9 @@ public enum DocSpecType {
     GYNECOLOGIST("ginekolog"),
     UROLOGIST("urolog"),
     DENTIST("dentysta"),
-    HEMATOLOGIST("hematolog");
+    HEMATOLOGIST("hematolog"),
+    CARDIOLOGIST("kardiolog"),
+    DERMATOLOGIST("dermatolog");
 
     private String name;
 
@@ -19,7 +21,7 @@ public enum DocSpecType {
         return name;
     }
 
-    public static DocSpecType findByName(String name){
+    public static DocSpecType findByName(String name) {
         DocSpecType[] values = DocSpecType.values();
         return Arrays.asList(values).stream()
                 .filter(t -> t.getName().equals(name))
