@@ -73,7 +73,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/dodajLekarza").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers("/*").permitAll()
                 .and().formLogin().successHandler(successLoginHandler)
-                //.loginPage("/login")
+                .loginPage("/login")
                 .and().exceptionHandling().accessDeniedPage("/error")
                 .and().csrf().disable();
 

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.sda.patient_registration_app.dto.DoctorDto;
 import pl.sda.patient_registration_app.dto.MyUserPrincipalDto;
 import pl.sda.patient_registration_app.dto.VisitDto;
+import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.entity.Visit;
 import pl.sda.patient_registration_app.repository.PatientsRepository;
 import pl.sda.patient_registration_app.repository.VisitsRepository;
@@ -60,8 +61,8 @@ public class VisitsFinder {
                 .collect(Collectors.toList());
     }
 
-    private List<VisitDto> getVisitsByDoctor(DoctorDto doctorDto) {
-        List<Visit> foundedDoctors = visitsRepository.findByDoctor(doctorDto);
+    private List<VisitDto> getVisitsByDoctor(Doctor doctor) {
+        List<Visit> foundedDoctors = visitsRepository.findByDoctor(doctor);
         return foundedDoctors.stream()
                 .map(v -> utilsService.mapVisitToVisitDto(v))
                 .collect(Collectors.toList());

@@ -33,7 +33,11 @@ public class User {
     private Long id;
 
     @Column(name = "role")
+    @Enumerated
     private RoleType role;
+
+    @Column(name = "email")
+    private String email;
 
 
 }

@@ -15,16 +15,16 @@ import pl.sda.patient_registration_app.entity.Patient;
 import javax.validation.Valid;
 
 @Controller
-public class NewPatientRegistrationController {
+public class NewUserRegistrationController {
 
     private final NewUserRegistrationService newUserRegistrationService;
 
-    public NewPatientRegistrationController(NewUserRegistrationService newUserRegistrationService) {
+    public NewUserRegistrationController(NewUserRegistrationService newUserRegistrationService) {
         this.newUserRegistrationService = newUserRegistrationService;
     }
 
     @GetMapping(value = "/nowyUzytkownik")
-    public ModelAndView showNewUserPage() {
+    public ModelAndView showNewPatientPage() {
 
         ModelAndView mav = new ModelAndView("nowyUzytkownik");
         mav.addObject("newUser", new NewUserRegistrationDto());
@@ -34,7 +34,7 @@ public class NewPatientRegistrationController {
     }
 
     @PostMapping(value = "/nowyUzytkownik/zarejestruj")
-    public ModelAndView registerUserAccount(
+    public ModelAndView registerPatientAccount(
             @ModelAttribute("newUser") @Valid NewUserRegistrationDto newUserRegistrationDto,
             BindingResult result,
             Errors errors) {
@@ -42,7 +42,7 @@ public class NewPatientRegistrationController {
         Patient registered = null;
 
         if (!result.hasErrors()) {
-            registered = createUserAccount(newUserRegistrationDto, result);
+            registered = createPatientAccount(newUserRegistrationDto, result);
         }
         if (registered == null) {
             result.rejectValue("email", "message.regError");
@@ -54,7 +54,7 @@ public class NewPatientRegistrationController {
         }
     }
 
-    private Patient createUserAccount(NewUserRegistrationDto newUserRegistrationDto, BindingResult result) {
+    private Patient createPatientAccount(NewUserRegistrationDto newUserRegistrationDto, BindingResult result) {
         Patient registered = null;
 
         try {
@@ -63,18 +63,7 @@ public class NewPatientRegistrationController {
             return null;
         }
         return registered;
-
-//    @PostMapping(value = "/nowyUzytkownik/zarejestruj")
-////    public ModelAndView postNewUserPage(@ModelAttribute("newUser") @Valid NewUserRegistrationDto newUserRegistrationDto) {
-////
-////        ModelAndView mav = new ModelAndView("rejestracjaWynik");
-////
-////        newPatientRegistrationService.saveNewPatientToDB(newUserRegistrationDto);
-////
-////
-////        return mav;
-////    }
-
-
     }
+
 }
+

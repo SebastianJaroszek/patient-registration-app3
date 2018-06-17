@@ -2,7 +2,7 @@ package pl.sda.patient_registration_app.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import pl.sda.patient_registration_app.dto.DoctorDto;
+import pl.sda.patient_registration_app.entity.Doctor;
 import pl.sda.patient_registration_app.entity.Patient;
 import pl.sda.patient_registration_app.entity.Visit;
 
@@ -15,8 +15,7 @@ public interface VisitsRepository extends JpaRepository<Visit, Long> {
 
     List<Visit> findByDate(LocalDate date);
 
-    List<Visit> findByDoctor(DoctorDto doctorDto);
-
+    List<Visit> findByDoctor(Doctor doctor);
 
     List<Visit> findByTime(LocalTime time);
 
