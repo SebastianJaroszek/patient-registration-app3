@@ -5,24 +5,18 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.patient_registration_app.bo.PatientFinder;
 import pl.sda.patient_registration_app.bo.VisitsFinder;
-import pl.sda.patient_registration_app.bo.VisitsService;
 import pl.sda.patient_registration_app.dto.MyUserPrincipalDto;
 
 @Controller
 
 public class PatientController {
 
-    private final VisitsService visitsService;
     private final VisitsFinder visitsFinder;
-    private final PatientFinder patientFinder;
 
     @Autowired
-    public PatientController(VisitsService visitsService, VisitsFinder visitsFinder, PatientFinder patientFinder) {
-        this.visitsService = visitsService;
+    public PatientController(VisitsFinder visitsFinder) {
         this.visitsFinder = visitsFinder;
-        this.patientFinder = patientFinder;
     }
 
     @GetMapping(value = "/wizytyPacjenta")

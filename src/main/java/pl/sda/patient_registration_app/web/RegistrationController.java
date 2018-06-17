@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import pl.sda.patient_registration_app.bo.*;
+import pl.sda.patient_registration_app.bo.DoctorDaysService;
+import pl.sda.patient_registration_app.bo.UtilsService;
+import pl.sda.patient_registration_app.bo.VisitsService;
 import pl.sda.patient_registration_app.dto.MyUserPrincipalDto;
 import pl.sda.patient_registration_app.dto.RegisterDto;
 import pl.sda.patient_registration_app.type.DocSpecType;
@@ -22,33 +24,21 @@ import java.util.Locale;
 @Controller
 public class RegistrationController {
 
-    private final RegistrationFinder registrationFinder;
-    private final RegistrationService registrationService;
     private final VisitsService visitsService;
     private final DoctorDaysService doctorDaysService;
     private final UtilsService utilsService;
-    private final TimetablesService timetablesService;
 
     @Autowired
-    public RegistrationController(RegistrationFinder registrationFinder, RegistrationService registrationService,
-                                  VisitsService visitsService, DoctorDaysService doctorDaysService,
-                                  UtilsService utilsService, TimetablesService timetablesService) {
-        this.registrationFinder = registrationFinder;
-        this.registrationService = registrationService;
+    public RegistrationController(VisitsService visitsService, DoctorDaysService doctorDaysService,
+                                  UtilsService utilsService) {
         this.visitsService = visitsService;
         this.doctorDaysService = doctorDaysService;
         this.utilsService = utilsService;
-        this.timetablesService = timetablesService;
     }
 
     @GetMapping("/rejestracja")
     public ModelAndView showRegistrationPage() {
-
-        //timetablesService.addTimetablesToDB();
-
         ModelAndView mav = new ModelAndView("rejestracja");
-
-        //mav.addObject("visits", registrationFinder.showAllVisits());
         mav.addObject("docSpecEnum", utilsService.convertSpecEnum());
         return mav;
     }
@@ -58,12 +48,10 @@ public class RegistrationController {
                                             @RequestParam(name = "date", required = false)
                                             @DateTimeFormat(pattern = "yyyy-MM-dd") LocalDate date) {
         ModelAndView mav = new ModelAndView("tabelaWizyt");
-        // dodać filtrowanie po specjalizacji
+
         if (date == null) {
             date = LocalDate.now();
-        } /*else {
-            date = date.plusDays(1);
-        }*/
+        }
 
         DocSpecType docSpecType = DocSpecType.findByName(specName);
 
@@ -77,23 +65,13 @@ public class RegistrationController {
         return mav;
     }
 
-    @PostMapping("/rejestracja/specjalista")/*/rejestracja/specjalista?visitId=3*/
+    @PostMapping("/rejestracja/specjalista")
     public ModelAndView registerPatientToVisit(@ModelAttribute("registerDto") RegisterDto registerDto) {
         ModelAndView mav = new ModelAndView("podsumowanieRejestracji");
-        /*DoctorDto doctorDto = new DoctorDto();
-        doctorDto.setId(Long.valueOf(5));
-        visitDto.setDoctor(doctorDto);*/ //TODO CASCADE
-        //visitDto.setDayOfVisit(LocalDate.of(2018, 6, 10));
-        /*RegisterDto registerDto = RegisterDto.builder()
-                .time(time)
-                .date(date)
-                .doctorId(doctorId)
-                .build();*/
+
         MyUserPrincipalDto myUserPrincipalDto = (MyUserPrincipalDto) SecurityContextHolder.getContext()
                 .getAuthentication().getPrincipal();
         visitsService.registerPatient(registerDto, myUserPrincipalDto.getId());
-        //doctorDaysService.createDayDtoFromDoctorDtoAndDate(registerDto.getDate());
-        //mav.addObject("id", visitId);
 
         return mav;
     }

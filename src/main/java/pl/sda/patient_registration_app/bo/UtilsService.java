@@ -16,7 +16,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -25,15 +24,12 @@ public class UtilsService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-
     public PatientDto mapPatientToPatientDto(Patient patient) {
-        //List<VisitDto> visits = mapVisitsToVisitsDto(patient.getVisits());
         if (patient != null) {
             return PatientDto.builder()
                     .id(patient.getId())
                     .name(patient.getFirstName())
                     .lastName(patient.getLastName())
-                    //.plannedVisits(visits)
                     .build();
         } else {
             return null;
@@ -41,7 +37,6 @@ public class UtilsService {
     }
 
     public DoctorDto mapDoctorToDoctorDto(Doctor doctor) {
-        //List<VisitDto> visit = mapVisitsToVisitsDto(doctor.getVisits());
         return DoctorDto.builder()
                 .id(doctor.getId())
                 .name(doctor.getFirstName())
@@ -49,14 +44,7 @@ public class UtilsService {
                 .specialization(doctor.getSpecialization())
                 .login(doctor.getLogin())
                 .email(doctor.getEmail())
-                //.visits(visit)
                 .build();
-    }
-
-    private List<VisitDto> mapVisitsToVisitsDto(Set<Visit> visits) {
-        return visits.stream()
-                .map(v -> mapVisitToVisitDto(v))
-                .collect(Collectors.toList());
     }
 
     public VisitDto mapVisitToVisitDto(Visit visit) {
@@ -75,13 +63,6 @@ public class UtilsService {
             hours.add(LocalTime.of(i, 0));
         }
         return hours;
-    }
-
-
-    public Patient mapPatientDtoToPatient(PatientDto patientDto) {
-        Patient patient = new Patient();
-        patient.setId(patientDto.getId());
-        return patient;
     }
 
     public Patient mapNewPatientRegistrationDtoToPatient(NewUserRegistrationDto newUserRegistrationDto) {
@@ -116,24 +97,6 @@ public class UtilsService {
         return authorities;
     }
 
-    public MyUserPrincipalDto mapPatientToMyUserPrincipal(Patient patient) {
-
-
-        return MyUserPrincipalDto.builder()
-                .login(patient.getLogin())
-                .password(patient.getPassword())
-                .id(patient.getId()).build();
-    }
-
-    public MyUserPrincipalDto mapDoctorToMyUserPrincipal(Doctor doctor) {
-
-
-        return MyUserPrincipalDto.builder()
-                .login(doctor.getLogin())
-                .password(doctor.getPassword())
-                .id(doctor.getId()).build();
-    }
-
     public Doctor mapDoctorDtoToDoctor(DoctorDto doctorDto) {
         Doctor doctor = new Doctor();
         doctor.setId(doctorDto.getId());
@@ -141,8 +104,7 @@ public class UtilsService {
     }
 
 
-    public List<String> convertSpecEnum() { //testy do tego!
-        //List<String> afterConvert = new ArrayList<>();
+    public List<String> convertSpecEnum() {
         List<DocSpecType> docSpecTypes = Arrays.asList(DocSpecType.values());
         List<String> docSpecNames = docSpecTypes.stream()
                 .map(s -> s.getName())

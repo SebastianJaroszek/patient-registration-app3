@@ -18,10 +18,9 @@ public class DoctorDayDto {
 
 
     private UtilsService utilsService;
-    //private final List<LocalTime> HOURS = utilsService.getHours();
 
     private DoctorDto doctorDto;
-    private List<VisitDto> visits;// = new ArrayList<>();
+    private List<VisitDto> visits;
     private LocalDate date;
 
     @Autowired

@@ -1,11 +1,4 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: DJ
-  Date: 2018-03-19
-  Time: 19:47
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -53,17 +46,6 @@
                         <c:if test="${!visit.status.name.equals(\"Brak\")}">
                             ${visit.status.name}
                             <c:if test="${!visit.status.name.equals(\"Zajeta\")}">
-                                <%--<form action="specjalista" method="post">
-                                    <input type="hidden" name="visit" value="${visit}">
-                                    <input type="submit" value="zarejestruj się">
-                                </form>--%>
-
-                                <%--<form action="specjalista" method="post">
-                                    <input type="hidden" name="time" value="${visit.hourOfVisit}">
-                                    <input type="hidden" name="date" value="${visit.dayOfVisit}">
-                                    <input type="hidden" name="doctorId" value="${visit.doctor.id}">
-                                    <input type="submit" value="zarejestruj się">
-                                </form>--%>
 
                                 <form:form action="specjalista" modelAttribute="registerDto" method="POST">
                                     <form:input type="hidden" path="date" value="${visit.dayOfVisit}"/>
@@ -71,9 +53,6 @@
                                     <form:input type="hidden" path="doctorId" value="${visit.doctor.id}"/>
                                     <input type="submit" name="register" value="zarejestruj się">
                                 </form:form>
-
-                                <%--<a href="${pageContext.servletContext.contextPath}/rejestracja/specjalista/${visit.hourOfVisit}/${visit.dayOfVisit}/${visit.doctor.id}">zarejestruj się</a>--%>
-
                             </c:if>
                         </c:if>
                     </td>
@@ -96,7 +75,6 @@
         <input type="hidden" name="specType" value="${specType}">
         <input type="submit" name="previousday" value="poprzedni dzień">
     </form>
-    <%--<a href="${pageContext.servletContext.contextPath}/rejestracja/nastepnyDzien/${dateOfVisits}">następny dzień</a>--%>
     <form action="specjalista" method="GET">
         Wybierz datę wizyty: <input title="date" name="date" type="date" value="${dateOfVisits}">
         <input type="hidden" name="specType" value="${specType}">

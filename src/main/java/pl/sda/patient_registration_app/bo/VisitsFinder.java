@@ -75,11 +75,6 @@ public class VisitsFinder {
                 .collect(Collectors.toList());
     }
 
-//    private List<Visit> getVisitsByPatient(PatientDto patientDto){
-//       return patientsRepository.findByPatient(patientDto.getId());
-//
-//    }
-
     public List<VisitDto> findVisitsByPatientDto(MyUserPrincipalDto myUserPrincipalDto) {
         List<Visit> foundedVisits = visitsRepository.findByPatient(patientsRepository.findOne(myUserPrincipalDto.getId()));
         return foundedVisits.stream()
@@ -88,10 +83,4 @@ public class VisitsFinder {
 
     }
 
-//    public List<Visit> findVisitsByPatientDto(PatientDto patientDto) {
-//        return visitDto.stream()
-//                .filter(v->v.getId().equals(patientDto))
-//                .collect(Collectors.toList());
-//
-//    }
 }

@@ -58,7 +58,6 @@ public class VisitsService {
     @Transactional
     public void registerPatient(RegisterDto registerDto, Long patientId) {
         Preconditions.checkNotNull(patientId, "ID pacjenta jest nullem");
-        //Visit visit = visitsRepository.findOne(utilsService.mapVisitDtoToVisit(visitDto));
         Visit newVisit = Visit.builder()
                 .date(registerDto.getDate())
                 .time(registerDto.getTime())
@@ -67,12 +66,6 @@ public class VisitsService {
                 .build();
 
         visitsRepository.save(newVisit);
-
-        /*Visit visit = visitsRepository.findByDoctorAndTimeAndDate(
-                visitDto.getDoctor().getId(),
-                visitDto.getHourOfVisit(),
-                visitDto.getDayOfVisit());
-        visit.setPatient(patientsRepository.findOne(patientId));*/
     }
 
     private DoctorTimetable getTimetableForDayOfWeek(LocalDate date, DoctorDto doctorDto) {
@@ -112,7 +105,7 @@ public class VisitsService {
                             .hourOfVisit(LocalTime.of(i, 0))
                             .dayOfVisit(date)
                             .status(VisitStatusType.AVAILABLE)
-                            .doctor(doctorDto) //constraint wielokolumnowy sprawdzajacy lekarza, date, godzine
+                            .doctor(doctorDto)
                             .build()
                     );
                 }
@@ -121,39 +114,6 @@ public class VisitsService {
 
         return availableVisits;
     }
-
-    /*public void fillDBwithVisits() {
-
-        Doctor doctor1 = new Doctor();
-        Doctor doctor2 = new Doctor();
-        Doctor doctor3 = new Doctor();
-
-        doctor1.setSpecialization(DocSpecType.UROLOGIST);
-        doctor1.setFirstName("Mariusz");
-        doctor1.setLastName("Putas");
-        doctor2.setSpecialization(DocSpecType.UROLOGIST);
-        doctor2.setFirstName("Janusz");
-        doctor2.setLastName("Fijut");
-        doctor3.setSpecialization(DocSpecType.UROLOGIST);
-        doctor3.setFirstName("Roman");
-        doctor3.setLastName("Wusiacz");
-
-        doctorsRepository.save(doctor1);
-        doctorsRepository.save(doctor2);
-        doctorsRepository.save(doctor3);
-
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(10, 0), doctor1);
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(11, 0), doctor1);
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(12, 0), doctor1);
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(10, 0), doctor2);
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(11, 0), doctor2);
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(12, 0), doctor2);
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(10, 0), doctor3);
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(11, 0), doctor3);
-        addVisit(LocalDate.of(2018, 6, 10), LocalTime.of(12, 0), doctor3);
-
-
-    }*/
 
 
 }
